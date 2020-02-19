@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Item = require('./models/item');
 require('dotenv').config();
 
+const CONNECTION_STRING = 'mongodb+srv://admin:passmesomepasscode@cluster0-mbedf.mongodb.net/test?retryWrites=true&w=majority';
 
 const app = express();
 
@@ -36,19 +37,17 @@ app.post('/items', async (req, res) => {
 });
 
 // Connect to database
-mongoose.connect('mongodb://18.217.55.52:27017/test', {
+mongoose.connect(CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-let open = 'closed';
 db.once('open', () => {
     console.log('Database connection established');
-    open = 'open';
 });
 
 app.listen(8081, function () {
-    console.log('Listening on port 8081: ' + open);
+    console.log('Listening on port 8081');
 });
