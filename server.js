@@ -36,7 +36,7 @@ app.post('/items', async (req, res) => {
 });
 
 // Connect to database
-mongoose.connect('localhost:27017/test', {
+mongoose.connect('18.217.55.52/test', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
