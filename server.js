@@ -36,17 +36,19 @@ app.post('/items', async (req, res) => {
 });
 
 // Connect to database
-mongoose.connect('18.217.55.52/test', {
+mongoose.connect('18.217.55.52:27017/test', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+let open = 'closed';
 db.once('open', () => {
     console.log('Database connection established');
+    open = 'open';
 });
 
 app.listen(8081, function () {
-    console.log('Listening on port 8081');
+    console.log('Listening on port 8081: ' + open);
 });
