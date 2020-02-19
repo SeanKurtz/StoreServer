@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.get('/items', async (req, res) => {
     try {
-        const items = await items.find();
+        const items = await Item.find();
         res.json(items);
     } catch (err) {
         res.json({
@@ -36,7 +36,7 @@ app.post('/items', async (req, res) => {
 });
 
 // Connect to database
-mongoose.connect(process.env.DB_CONNECTION, {
+mongoose.connect('localhost:27017/test', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
