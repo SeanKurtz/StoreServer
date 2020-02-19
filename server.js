@@ -36,7 +36,7 @@ app.post('/items', async (req, res) => {
 });
 
 // Connect to database
-mongoose.connect(prorcess.env.DB_CONNECTION, {
+mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
