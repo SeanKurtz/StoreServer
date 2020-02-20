@@ -21,7 +21,7 @@ app.get('/items', async (req, res) => {
 });
 
 app.post('/items', async (req, res) => {
-    const item = new item({
+    const item = new Item({
         title: req.body.title,
         description: req.body.description,
         price: req.body.price
