@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const Item = require('./models/item');
 require('dotenv').config();
 
@@ -9,7 +10,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.get('/items', async (req, res) => {
+app.get('/items', cors(), async (req, res) => {
     try {
         const items = await Item.find();
         res.json(items);
