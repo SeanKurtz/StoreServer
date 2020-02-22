@@ -4,7 +4,7 @@ const cors = require('cors');
 const Item = require('./models/item');
 require('dotenv').config();
 
-const CONNECTION_STRING = 'mongodb+srv://admin:passmesomepasscode@cluster0-mbedf.mongodb.net/test?retryWrites=true&w=majority';
+const MONGODB_URI = 'mongodb+srv://admin:passmesomepasscode@cluster0-mbedf.mongodb.net/test?retryWrites=true&w=majority';
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.get('/items', cors(), async (req, res) => {
     }
 });
 
-app.post('/items', async (req, res) => {
+app.post('/items', cors(), async (req, res) => {
     const item = new Item({
         title: req.body.title,
         description: req.body.description,
@@ -38,7 +38,7 @@ app.post('/items', async (req, res) => {
 });
 
 // Connect to database
-mongoose.connect(CONNECTION_STRING, {
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
